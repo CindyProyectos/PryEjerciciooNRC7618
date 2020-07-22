@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="materias")
@@ -28,9 +30,13 @@ public class Materia implements Serializable{
 	private Integer idmateria;
 	
 	@Column(name="nombre")
+	@NotEmpty
+	@Size(max=15)
 	private String nombre;
 	
 	@Column(name="nrc")
+	@NotEmpty
+	@Size(max=4)
 	private String nrc;
 	
 	@Column(name="creditos")
@@ -116,6 +122,10 @@ public class Materia implements Serializable{
 	public void setSemestre(Semestre semestre) {
 		this.semestre = semestre;
 	}
-	
+
+	@Override
+	public String toString() {
+		return nombre + " - " + nrc;
+	}
 	
 }

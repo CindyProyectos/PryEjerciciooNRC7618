@@ -1,6 +1,7 @@
 package com.ortiz.ejercicio.models.entities;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
@@ -129,6 +130,36 @@ public class Semestre implements Serializable{
 
 	public void setMaterias(List<Materia> materias) {
 		this.materias = materias;
+	}
+	
+	public String fechaInicio() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yyyy");		
+		return sdf.format(fechaInicio.getTime());
+	}
+	
+	public String fechaUI() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yyyy");		
+		return sdf.format(fechaUnidadI.getTime());
+	}
+	
+	public String fechaUII() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yyyy");		
+		return sdf.format(fechaUnidadII.getTime());
+	}
+	
+	public String fechaUIII() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yyyy");		
+		return sdf.format(fechaUnidadIII.getTime());
+	}
+	
+	public String fechaFin() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yyyy");		
+		return sdf.format(fechaFin.getTime());
+	}
+
+	@Override
+	public String toString() {
+		return codigo + " - " + descripcion;
 	}
 	
 	

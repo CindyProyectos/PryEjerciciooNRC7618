@@ -12,7 +12,7 @@ import com.ortiz.ejercicio.models.entities.Alumno;
 @Service
 public class AlumnoService implements IAlumnoService{
 
-	@Autowired
+	@Autowired //Inyeccion de dependencia
 	private IAlumno dao;
 	
 	@Override

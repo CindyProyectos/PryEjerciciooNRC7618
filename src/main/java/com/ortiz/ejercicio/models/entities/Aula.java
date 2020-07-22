@@ -1,6 +1,7 @@
 package com.ortiz.ejercicio.models.entities;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import javax.persistence.Basic;
@@ -12,6 +13,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="aulas")
@@ -26,12 +31,16 @@ public class Aula implements Serializable{
 	private Integer idaula;
 	
 	@Column(name="fecha_inicio")
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")	
 	private Calendar fechaInicio;
 	
 	@Column(name="fecha_fin")
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")	
 	private Calendar fechaFin;
 	
-	@JoinColumn(name="fk_profesor", referencedColumnName="pk_persona")
+	@JoinColumn(name="fk_profesor", referencedColumnName="pk_profesor")
 	@ManyToOne
 	private Profesor docente;
 	
@@ -79,5 +88,13 @@ public class Aula implements Serializable{
 		this.asignatura = asignatura;
 	}
 	
+	public String fechaInicio() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yyyy");		
+		return sdf.format(fechaInicio.getTime());
+	}
 	
+	public String fechaFin() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yyyy");		
+		return sdf.format(fechaFin.getTime());
+	}
 }

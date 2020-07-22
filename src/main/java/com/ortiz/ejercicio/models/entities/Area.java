@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="areas")
@@ -26,8 +28,15 @@ public class Area implements Serializable{
 	private Integer idarea;
 	
 	@Column(name="nombre")
+	@NotEmpty
+	@Size(max=20)
 	private String nombre;
 
+	@Column(name="coordinador")
+	@NotEmpty
+	@Size(max=35)
+	private String coordinador;
+	
 	public Area() {
 		super();
 	}
@@ -52,9 +61,17 @@ public class Area implements Serializable{
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	
+	public String getCoordinador() {
+		return coordinador;
+	}
+
+	public void setCoordinador(String coordinador) {
+		this.coordinador = coordinador;
+	}
 
 	/*Relacion uno a varios con Materia*/
-	
+
 	public List<Materia> getMaterias() {
 		return materias;
 	}
